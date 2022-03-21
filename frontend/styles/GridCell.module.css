@@ -13,4 +13,9 @@
 
 .last {
   background-color: var(--primary);
+  color: var(--black);
+}
+
+.win {
+  color: var(--alert);
 }

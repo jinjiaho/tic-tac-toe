@@ -1,6 +1,6 @@
 import React from "react";
-import { JoinRoom } from "../pages/api/functions";
-import UsernameForm from "./common/UsernameForm";
+import { JoinRoom } from "../../pages/api/functions";
+import UsernameForm from "../common/UsernameForm";
 
 interface IJoinRoomForm {
   toPlay: boolean;

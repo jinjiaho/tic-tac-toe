@@ -1,16 +1,9 @@
 import React from "react";
-import {
-  NewRoundRequest,
-  Player,
-  RoomInitRequest,
-  RoomState,
-} from "../interfaces.ts";
+import { NewRoundRequest, RoomInitRequest, RoomState } from "../interfaces.ts";
 import { GameEndMessage } from "../interfaces.ts/websocket";
-import { LeaveRoom } from "../pages/api/functions";
-import { LeaveRoomRequest } from "../pages/api/interfaces";
-import Game from "./Game";
-import GameEnd from "./GameEnd";
-import Waiting from "./Waiting";
+import Game from "./RoomComponents/Game";
+import GameEnd from "./RoomComponents/GameEnd";
+import Waiting from "./RoomComponents/Waiting";
 
 interface IRoom {
   roomId: string;
@@ -38,21 +31,10 @@ const Room: React.FC<IRoom> = ({ roomId, username, onLeaveRoom }) => {
   };
 
   const handleLeave = (gameEnded: boolean) => {
-    // const data: LeaveRoomRequest = {
-    //   roomId,
-    //   username,
-    // };
     if (websocket) {
       websocket.close();
       onLeaveRoom(gameEnded);
     }
-    // LeaveRoom(data)
-    //   .then(() => {
-    //     onLeaveRoom();
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
   };
 
   const newRound = () => {
@@ -113,9 +95,9 @@ const Room: React.FC<IRoom> = ({ roomId, username, onLeaveRoom }) => {
   React.useEffect(() => {
     setWebsocket(new WebSocket("ws://localhost:8000"));
 
-    window.onbeforeunload = function () {
-      return "Are you sure you want to leave?";
-    };
+    // window.onbeforeunload = function () {
+    //   return "Are you sure you want to leave?";
+    // };
 
     window.onunload = function () {
       if (websocket) {
@@ -130,36 +112,34 @@ const Room: React.FC<IRoom> = ({ roomId, username, onLeaveRoom }) => {
     }
   }, [websocket]);
 
-  React.useEffect(() => {
-    console.log("ROOM STATE", roomState);
-  }, [roomState]);
+  // React.useEffect(() => {
+  //   console.log("ROOM STATE", roomState);
+  // }, [roomState]);
 
   return (
     <>
-      {gameEnd === undefined ? (
-        <div>
-          {roomState ? (
-            <div>
-              {roomState.players.length < 2 ? (
-                <Waiting roomId={roomId} />
-              ) : (
-                <Game
-                  game={roomState.game}
-                  watchers={roomState.watchers}
-                  players={roomState.players}
-                  username={username}
-                  onMove={handleMove}
-                  onNewGame={newRound}
-                />
-              )}
-            </div>
-          ) : (
-            <div>Loading room...</div>
-          )}
-          <button onClick={() => handleLeave(false)}>Leave Room</button>
-        </div>
+      {roomState ? (
+        gameEnd === undefined ? (
+          <div>
+            {roomState.players.length < 2 ? (
+              <Waiting roomId={roomId} onLeaveRoom={() => handleLeave(true)} />
+            ) : (
+              <Game
+                game={roomState.game}
+                watchers={roomState.watchers}
+                players={roomState.players}
+                username={username}
+                onMove={handleMove}
+                onNewGame={newRound}
+                onLeaveRoom={handleLeave}
+              />
+            )}
+          </div>
+        ) : (
+          <GameEnd {...gameEnd} onBack={() => handleLeave(true)} />
+        )
       ) : (
-        <GameEnd {...gameEnd} onBack={() => handleLeave(true)} />
+        <h1>Loading room...</h1>
       )}
     </>
   );

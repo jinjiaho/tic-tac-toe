@@ -12,7 +12,7 @@ var roomsRouter = require('./routes/rooms');
 var app = express();
 
 initRedis().then(() => {
-  console.log(`***** READY TO CONNECT *****`);
+  console.log(`***** BACKEND READY *****`);
   return deleteAllRooms();
 }).then(() => {
   console.log('OLD ROOMS DELETED');

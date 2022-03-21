@@ -1,6 +1,6 @@
 import React from "react";
 import classnames from "classnames";
-import styles from "../styles/GridCell.module.css";
+import styles from "../../styles/GridCell.module.css";
 
 interface IGridCell {
   index: number;
@@ -8,6 +8,7 @@ interface IGridCell {
   lastMove: boolean;
   clickable: boolean;
   playerSymbol: string;
+  win: boolean;
   onClick: (index: number) => void;
 }
 
@@ -17,9 +18,13 @@ const GridCell: React.FC<IGridCell> = ({
   content,
   lastMove,
   playerSymbol,
+  win,
   onClick,
 }) => {
-  const [classes, setClasses] = React.useState<string[]>([styles.container]);
+  const [classes, setClasses] = React.useState<string[]>([
+    styles.container,
+    win ? styles.win : "",
+  ]);
   const [hover, setHover] = React.useState(false);
 
   const addClass = (classname: string) => {
@@ -58,6 +63,14 @@ const GridCell: React.FC<IGridCell> = ({
       removeClass(styles.hover);
     }
   }, [hover]);
+
+  React.useEffect(() => {
+    if (win) {
+      addClass(styles.win);
+    } else {
+      removeClass(styles.win);
+    }
+  }, [win]);
 
   return (
     <div

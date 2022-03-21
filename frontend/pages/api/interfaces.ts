@@ -1,7 +1,10 @@
 
+interface GetRoomsRequest {
+  toPlay: boolean;
+}
+
 interface GetRoomsResponse {
-  play: string[];
-  watch: string[];
+  rooms: string[];
 }
 
 interface CreateRoomRequest {
@@ -24,6 +27,7 @@ interface LeaveRoomRequest {
 }
 
 export type {
+  GetRoomsRequest,
   GetRoomsResponse,
   CreateRoomRequest,
   CreateRoomResponse,

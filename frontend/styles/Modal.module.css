@@ -7,14 +7,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.15);
+  background-color: #46577580;
 }
 
 .container {
+  opacity: 1;
+  min-width: 40vw;
   max-width: 50vw;
   max-height: 50vh;
   background-color: white;
   border-radius: 0.5rem;
+  padding: 2rem;
 }
 
 .header {

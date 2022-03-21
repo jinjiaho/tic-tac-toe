@@ -3,4 +3,37 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 2rem;
+}
+
+.actions {
+  min-width: 50vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.action {
+  margin-bottom: 1rem;
+}
+
+.actionHeader {
+  background-color: var(--primary);
+  border-radius: 1rem;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 700;
+  color: var(--black);
+  cursor: pointer;
+}
+
+.actionContent {
+  border: 1px solid var(--tertiary);
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  border-top-color: white;
+  padding: 2rem;
 }

@@ -4,6 +4,10 @@
   --tertiary: #59c9a5;
   --alert: #ef6f6c;
   --dark: #5b6c5d;
+  --black: #333;
+  --l-font: 1.2rem;
+  --xl-font: 2rem;
+  --xxl-font: 3rem;
 }
 
 html,
@@ -21,4 +25,5 @@ a {
 
 * {
   box-sizing: border-box;
+  color: var(--secondary);
 }

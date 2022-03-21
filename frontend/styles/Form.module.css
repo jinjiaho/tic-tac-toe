@@ -1,19 +1,32 @@
 .form {
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  grid-template-areas:
+    "input button"
+    "error error";
+  grid-gap: 1rem;
+  font-size: var(--l-font);
 }
 
 .input {
-  margin: 0.5rem;
+  grid-area: input;
+  border: 1px solid var(--tertiary);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  font-size: var(--l-font);
 }
 
 .error {
-  color: red;
+  grid-area: error;
+  color: var(--alert);
 }
 
 .button {
+  grid-area: button;
   padding: 0.5rem 1rem;
+  background-color: var(--secondary);
+  color: white;
+  border-radius: 0.5rem;
+  box-shadow: none;
+  border: none;
+  cursor: pointer;
 }

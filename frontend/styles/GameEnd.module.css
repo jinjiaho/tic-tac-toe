@@ -10,16 +10,31 @@
   padding: 2rem;
   background-color: var(--primary);
   text-align: center;
+  width: 100%;
+  color: var(--black);
+  border-radius: 1rem;
 }
 
 .scoreboard {
+  margin: 1rem 2rem 3rem;
   display: grid;
   grid-template-columns: repeat(2, auto);
-  grid-gap: 1rem;
+  grid-column-gap: 1rem;
+  font-size: var(--xl-font);
+  padding: 1rem 2rem;
+  background-color: var(--secondary);
+}
+
+.scoreboardCell {
+  padding: 1rem;
+  color: white;
 }
 
 .back {
   background-color: var(--tertiary);
   border-radius: 0.5rem;
-  font-size: 2rem;
+  font-size: var(--l-font);
+  color: var(--black);
+  padding: 1rem 2rem;
+  cursor: pointer;
 }

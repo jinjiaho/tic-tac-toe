@@ -6,21 +6,21 @@ import { checkRoomExists, createRoom, getRoom, getRooms, leaveRoom, saveRoom } f
 import { initGame } from '../utils/game';
 import { isInRoom } from '../utils/room';
 
-router.get('/', function(req, res, next) {
+router.post('/', function(req, res, next) {
+  const toPlay = req.body.toPlay;
   getRooms().then(rooms => {
     const data = {
-      play: [],
-      watch: []
+      rooms: []
     }
     const promises = [];
     rooms.map(room => {
       promises.push(
         new Promise<void>((resolve, reject) => {
           getRoom(room).then(roomData => {
-            if (roomData.players.length < 2) {
-              data.play.push(room);
-            } else {
-              data.watch.push(room);
+            const play = toPlay && roomData.players.length < 2;
+            const watch = !toPlay && roomData.players.length > 1;
+            if (play || watch) {
+              data.rooms.push(room);
             }
             resolve();
           }).catch(reject)
@@ -40,26 +40,6 @@ router.get('/', function(req, res, next) {
     })
   })
 })
-
-router.get('/exists/:roomId', function(req, res, next) {
-  checkRoomExists(req.params.roomId).then(result => {
-    res.status(200).json({
-      exists: result
-    });
-  }).catch(err => {
-    res.status(500).json({
-      message: err
-    })
-  })
-})
-
-/* GET room. */
-router.get('/:roomId', function(req, res, next) {
-  res.render('room', {
-    title: 'Tic-Tac-Toe Online',
-    roomId: req.params.roomId
-  });
-});
 
 /* CREATE room */
 router.post('/create', function(req, res, next) {

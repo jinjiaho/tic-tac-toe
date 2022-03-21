@@ -1,7 +1,7 @@
 import React from "react";
-import { CreateRoom } from "../pages/api/functions";
-import { CreateRoomResponse } from "../pages/api/interfaces";
-import UsernameForm from "./common/UsernameForm";
+import { CreateRoom } from "../../pages/api/functions";
+import { CreateRoomResponse } from "../../pages/api/interfaces";
+import UsernameForm from "../common/UsernameForm";
 
 interface ICreateRoomForm {
   onCreateRoom: (roomId: string, username: string) => void;

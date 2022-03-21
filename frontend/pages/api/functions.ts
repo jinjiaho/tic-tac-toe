@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { CreateRoomRequest, CreateRoomResponse, GetRoomsResponse, JoinRoomRequest, LeaveRoomRequest } from './interfaces';
+import { CreateRoomRequest, CreateRoomResponse, GetRoomsRequest, GetRoomsResponse, JoinRoomRequest, LeaveRoomRequest } from './interfaces';
 
 const BASE_URL = `http://localhost:8000`;
 const GET_ROOMS_URL = `/rooms`;
@@ -9,11 +9,12 @@ const LEAVE_ROOM_URL = `/rooms/leave`;
 
 const axiosInstance = axios.create({ baseURL: BASE_URL });
 
-const GetRooms = () => {
+const GetRooms = (data: GetRoomsRequest) => {
   return new Promise<GetRoomsResponse>((resolve, reject) => {
     axiosInstance({
-      method: 'get',
-      url: GET_ROOMS_URL
+      method: 'post',
+      url: GET_ROOMS_URL,
+      data
     }).then(res => {
       console.log(`GET ROOMS RESPONSE: ${JSON.stringify(res)}`);
       resolve(res.data);

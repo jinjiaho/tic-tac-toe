@@ -1,12 +1,14 @@
 import React from "react";
-import styles from "../styles/Grid.module.css";
+import { GameWin } from "../../interfaces.ts";
+import styles from "../../styles/Grid.module.css";
 import GridCell from "./GridCell";
 
 interface IGrid {
   isTurn: boolean;
   status: string;
-  last?: number;
   playerSymbol: string;
+  last?: number;
+  win?: GameWin;
   onMove: (cell: number) => void;
 }
 
@@ -15,6 +17,7 @@ const Grid: React.FC<IGrid> = ({
   status,
   last,
   playerSymbol,
+  win,
   onMove,
 }) => {
   const [gameStatus, setGameStatus] = React.useState<string[]>([]);
@@ -25,6 +28,13 @@ const Grid: React.FC<IGrid> = ({
       setMoved(true);
       onMove(cell);
     }
+  };
+
+  const isInWinningCombination = (index: number) => {
+    if (!win || win === undefined) {
+      return false;
+    }
+    return win.combination.includes(index);
   };
 
   React.useEffect(() => {
@@ -50,6 +60,7 @@ const Grid: React.FC<IGrid> = ({
             content={cell}
             playerSymbol={playerSymbol}
             onClick={handleMove}
+            win={isInWinningCombination(i)}
             index={i}
           />
         ))}

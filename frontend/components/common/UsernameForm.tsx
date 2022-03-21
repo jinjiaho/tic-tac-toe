@@ -21,7 +21,8 @@ const UsernameForm: React.FC<IUsernameForm> = ({
     setVal(e.target.value);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
     const error = validateUsername(val);
     console.log("Validate username result", error);
     if (error) {
@@ -32,19 +33,27 @@ const UsernameForm: React.FC<IUsernameForm> = ({
   };
 
   return (
-    <div className={styles.form}>
+    <form className={styles.form}>
       <input
         type="text"
         pattern="[a-zA-Z0-9]{3,15}"
         className={styles.input}
         value={val}
         onChange={handleInput}
+        placeholder="Enter a username"
+        tabIndex={0}
+        autoFocus
       />
       <span className={styles.error}>{err || error}</span>
-      <button className={styles.button} onClick={handleSubmit}>
+      <button
+        className={styles.button}
+        onClick={handleSubmit}
+        tabIndex={1}
+        type="submit"
+      >
         {submitText}
       </button>
-    </div>
+    </form>
   );
 };
 

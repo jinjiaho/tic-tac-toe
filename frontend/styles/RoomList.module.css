@@ -1,0 +1,16 @@
+.container {
+  max-height: 10rem;
+  overflow-y: auto;
+}
+
+.room {
+  background-color: var(--tertiary);
+  padding: 0.5rem;
+  color: var(--black);
+  cursor: pointer;
+  margin-bottom: 0.5rem;
+}
+
+.hover {
+  background-color: var(--primary);
+}
