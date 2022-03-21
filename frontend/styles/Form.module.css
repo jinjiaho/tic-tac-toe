@@ -1,0 +1,19 @@
+.form {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.input {
+  margin: 0.5rem;
+}
+
+.error {
+  color: red;
+}
+
+.button {
+  padding: 0.5rem 1rem;
+}

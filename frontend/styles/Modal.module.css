@@ -1,0 +1,53 @@
+.background {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.15);
+}
+
+.container {
+  max-width: 50vw;
+  max-height: 50vh;
+  background-color: white;
+  border-radius: 0.5rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+
+.body {
+  padding: 1rem;
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem;
+}
+
+.primaryAction {
+  background-color: var(--primary);
+}
+
+.secondaryAction {
+  background-color: var(--secondary);
+  color: white;
+}
+
+.close {
+  font-size: 2rem;
+  color: var(--alert);
+}
+
+.content {
+  padding: 1rem;
+}
