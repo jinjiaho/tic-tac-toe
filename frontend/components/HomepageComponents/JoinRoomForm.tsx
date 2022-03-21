@@ -14,16 +14,23 @@ const JoinRoomForm: React.FC<IJoinRoomForm> = ({
   onJoinRoom,
 }) => {
   const [err, setErr] = React.useState("");
+  const [sending, setSending] = React.useState(false);
+
   const handleFormSubmit = (username: string) => {
-    const data = { username, roomId, toPlay };
-    JoinRoom(data)
-      .then(() => {
-        onJoinRoom(roomId, username);
-      })
-      .catch((err) => {
-        console.log("ERROR", err);
-        setErr(err);
-      });
+    if (!sending) {
+      setSending(true);
+      const data = { username, roomId, toPlay };
+      JoinRoom(data)
+        .then(() => {
+          setSending(false);
+          onJoinRoom(roomId, username);
+        })
+        .catch((err) => {
+          setSending(false);
+          console.log("ERROR", err);
+          setErr(err);
+        });
+    }
   };
 
   return (

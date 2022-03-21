@@ -8,16 +8,23 @@ interface ICreateRoomForm {
 }
 
 const CreateRoomForm: React.FC<ICreateRoomForm> = ({ onCreateRoom }) => {
+  const [sending, setSending] = React.useState(false);
+
   const handleFormSubmit = (username: string) => {
-    const data = { username };
-    CreateRoom(data)
-      .then((result: CreateRoomResponse) => {
-        console.log(result);
-        onCreateRoom(result.roomId, username);
-      })
-      .catch((err) => {
-        console.log(`Error creating room: ${err}`);
-      });
+    if (!sending) {
+      setSending(true);
+      const data = { username };
+      CreateRoom(data)
+        .then((result: CreateRoomResponse) => {
+          setSending(false);
+          console.log(result);
+          onCreateRoom(result.roomId, username);
+        })
+        .catch((err) => {
+          setSending(false);
+          console.log(`Error creating room: ${err}`);
+        });
+    }
   };
 
   return <UsernameForm submitText="Create Room" onSubmit={handleFormSubmit} />;

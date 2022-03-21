@@ -43,13 +43,13 @@ Some areas for improvement in the future:
 - To improve keyboard navigation on forms (enter to submit, tab indices)
 - Improve colour scheme
 
-### Coding improvements
+### System improvements
 
 - Some functions may be missing input validation
+- To remove the unused images created by Docker every build
 
 ### Performance Improvements
 
-- To remove the unused images created by Docker every build
 - To remove logs
 
 ### Bugs
