@@ -42,6 +42,7 @@ Some areas for improvement in the future:
 - To make the strikeout effect on win
 - To improve keyboard navigation on forms (enter to submit, tab indices)
 - Improve colour scheme
+- At the moment, only tested for compatibility with Chrome
 
 ### System improvements
 
